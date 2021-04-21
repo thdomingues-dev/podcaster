@@ -3,12 +3,14 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "concurrently --kill-others yarn:dev:*",
 		"build": "next build",
 		"start": "next start",
-		"server": "json-server server.json -w -d 500 -p 3333"
+		"dev:client": "next dev",
+		"dev:server": "json-server server.json -w -d 500 -p 3333"
 	},
 	"dependencies": {
+		"concurrently": "^6.0.2",
 		"date-fns": "^2.21.1",
 		"next": "10.1.3",
 		"react": "17.0.2",
