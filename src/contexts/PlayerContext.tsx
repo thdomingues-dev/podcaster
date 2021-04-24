@@ -13,6 +13,7 @@ type PlayerContextData = {
 	currentEpisodeIndex: number;
 	isPlaying: boolean;
 	togglePlay: () => void;
+	setPlayingState: (state: boolean) => void;
 	handlePlay: (episode: Episode) => void;
 };
 
@@ -33,8 +34,21 @@ export const PlayerProvider: React.FC = ({ children }) => {
 		setIsPlaying(!isPlaying);
 	}
 
+	function setPlayingState(state: boolean) {
+		setIsPlaying(state);
+	}
+
 	return (
-		<PlayerContext.Provider value={{ episodeList, currentEpisodeIndex, isPlaying, handlePlay, togglePlay }}>
+		<PlayerContext.Provider
+			value={{
+				episodeList,
+				currentEpisodeIndex,
+				isPlaying,
+				handlePlay,
+				togglePlay,
+				setPlayingState,
+			}}
+		>
 			{children}
 		</PlayerContext.Provider>
 	);
