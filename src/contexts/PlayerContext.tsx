@@ -12,6 +12,8 @@ type PlayerContextData = {
 	episodeList: Episode[];
 	currentEpisodeIndex: number;
 	isPlaying: boolean;
+	isLooping: boolean;
+	toggleLoop: () => void;
 	handlePlayList: (list: Episode[], index: number) => void;
 	togglePlay: () => void;
 	setPlayingState: (state: boolean) => void;
@@ -30,6 +32,7 @@ export const PlayerProvider: React.FC = ({ children }: PlayerProviderProps) => {
 	const [episodeList, setEpisodeList] = useState([]);
 	const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(false);
+	const [isLooping, setIsLooping] = useState(false);
 
 	function handlePlay(episode: Episode) {
 		setEpisodeList([episode]);
@@ -46,6 +49,10 @@ export const PlayerProvider: React.FC = ({ children }: PlayerProviderProps) => {
 
 	function togglePlay() {
 		setIsPlaying(!isPlaying);
+	}
+
+	function toggleLoop() {
+		setIsLooping(!isLooping);
 	}
 
 	function setPlayingState(state: boolean) {
@@ -72,6 +79,8 @@ export const PlayerProvider: React.FC = ({ children }: PlayerProviderProps) => {
 				episodeList,
 				currentEpisodeIndex,
 				isPlaying,
+				isLooping,
+				toggleLoop,
 				handlePlay,
 				handlePlayNext,
 				handlePlayBack,
