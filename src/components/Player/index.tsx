@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Slider from 'rc-slider';
 
-import PlayerContext from '../../contexts/PlayerContext';
+import { usePlayer } from '../../contexts/PlayerContext';
 
 import styles from './styles.module.scss';
 import 'rc-slider/assets/index.css';
@@ -18,7 +18,7 @@ export default function Player() {
 		setPlayingState,
 		handlePlayNext,
 		handlePlayBack,
-	} = useContext(PlayerContext);
+	} = usePlayer();
 
 	const episode = episodeList[currentEpisodeIndex];
 

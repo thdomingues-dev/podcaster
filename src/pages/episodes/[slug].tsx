@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Image from 'next/image';
 
+import { usePlayer } from '../../contexts/PlayerContext';
 import convertDurationToTimeString from '../../utils/convertDurationToTimeString';
 import api from '../../services/api';
 
 import styles from './episode.module.scss';
+
 
 type Episode = {
 	id: string;
@@ -26,6 +28,7 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }: EpisodeProps) {
+	const { handlePlay } = usePlayer();
 
 	return (
 		<div className={styles.episode}>
@@ -42,7 +45,7 @@ export default function Episode({ episode }: EpisodeProps) {
 					src={episode.thumbnail}
 					objectFit="cover"
 				/>
-				<button type="button">
+				<button type="button" onClick={() => handlePlay(episode)}>
 					<img src="/play.svg" alt="Tocar episódio" />
 				</button>
 			</div>
