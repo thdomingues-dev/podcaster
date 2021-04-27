@@ -19,6 +19,7 @@ type PlayerContextData = {
 	handlePlayList: (list: Episode[], index: number) => void;
 	togglePlay: () => void;
 	setPlayingState: (state: boolean) => void;
+	clearPlayerState: () => void;
 	handlePlay: (episode: Episode) => void;
 	handlePlayNext: () => void;
 	handlePlayBack: () => void;
@@ -66,6 +67,11 @@ export const PlayerProvider: React.FC = ({ children }: PlayerProviderProps) => {
 		setIsPlaying(state);
 	}
 
+	function clearPlayerState() {
+		setEpisodeList([]);
+		setCurrentEpisodeIndex(0);
+	}
+
 	function handlePlayNext() {
 		const nextEpisodeIndex = currentEpisodeIndex + 1;
 
@@ -99,6 +105,7 @@ export const PlayerProvider: React.FC = ({ children }: PlayerProviderProps) => {
 				togglePlay,
 				handlePlayList,
 				setPlayingState,
+				clearPlayerState,
 			}}
 		>
 			{children}
